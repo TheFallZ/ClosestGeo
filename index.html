@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClosestGeo</title>
+    <!-- Include Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDjQQUJWGM-QMnkXisfDyznRgrHxBCArI"></script>
+    <style>
+        body {
+            background-color: black;
+            color: white; /* Set text color to white for better contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ensure the body covers the entire viewport height */
+            margin: 0; /* Remove default margin */
+            flex-direction: column; /* Align items vertically */
+        }
+
+        #map {
+            margin: 20px auto; /* Center the map horizontally */
+            height: 60vh; /* Set the height of the map container */
+            width: 40%; /* Set the width of the map container */
+            display: none; /* Hide the map initially */
+        }
+
+        form {
+            text-align: center; /* Center-align the form elements */
+        }
+
+        /* Style for the form elements (optional) */
+        label, input, select, button {
+            margin: 5px; /* Add some spacing between elements */
+        }
+
+        /* Style for the flag image */
+        #result img {
+            width: 100px; /* Set the width of the image */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to adjust the map size after the flag is loaded
+            function adjustMapSize() {
+                const map = document.getElementById('map');
+                const flagImageHeight = document.querySelector('#result img').offsetHeight;
+                map.style.height = `calc(60vh - ${flagImageHeight}px)`;
+            }
+
+            // Event listener for when the flag image is loaded
+            const flagImage = document.querySelector('#result img');
+            flagImage.addEventListener('load', adjustMapSize);
+
+            // If the image is already loaded (e.g., cached), adjust the map size immediately
+            if (flagImage.complete) {
+                adjustMapSize();
+            }
+        });
+    </script>
+</head>
+<body>
+    <div style="text-align:center;">
+        <h1>ClosestGeo</h1>
+        <form id="addressForm" style="text-align: center; max-height: 70vh; overflow-y: auto;">
+            <label for="address1">Address 1:</label>
+            <input type="text" id="address1" name="address1" required>
+            <br>
+            <label for="address2">Address 2:</label>
+            <input type="text" id="address2" name="address2" required>
+            <br>
+            <label for="distanceOption">Distance Option:</label>
+            <select id="distanceOption" name="distanceOption">
+                <option value="both">Both</option>
+                <option value="westEast">West-East</option>
+                <option value="northSouth">North-South</option>
+            </select>
+            <br>
+            <button type="submit" id="submitButton">Submit</button>
+        </form>
+    </div>
+    <div id="result"></div>
+    <div id="map"></div>
+    <script>
+        document.getElementById('addressForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const address1 = document.getElementById('address1').value;
+            const address2 = document.getElementById('address2').value;
+            let distanceOption = document.getElementById('distanceOption').value;
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '';
+
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.innerText = 'Loading...';
+
+            try {
+                const response = await fetch('/find-country', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ address1, address2, distanceOption })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Server response was not ok.');
+                }
+
+                const result = await response.json();
+                const distance = result.distance;
+
+                resultDiv.innerHTML = `
+                    <h2>Country: ${result.country}</h2>
+                    <p>Distance: ${distance} </p>
+                    <img src="${result.flagUrl}" alt="Flag of ${result.country}">
+                    <p>Distance Option Used: ${result.distanceOptionUsed}</p>
+                `;
+
+                const { latitude, longitude } = result.coordinates;
+
+                // Show the map and update it
+                document.getElementById('map').style.display = 'block';
+                updateMap(latitude, longitude);
+            } catch (error) {
+                resultDiv.innerHTML = `<h2>Error: ${error.message}</h2>`;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerText = 'Submit';
+            }
+        });
+
+        var map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 51.505, lng: -0.09 },
+                zoom: 13
+            });
+        }
+
+        function updateMap(lat, lon) {
+            map.setCenter({ lat: lat, lng: lon });
+            new google.maps.Marker({
+                position: { lat: lat, lng: lon },
+                map: map
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDjQQUJWGM-QMnkXisfDyznRgrHxBCArI&callback=initMap"></script>
+</body>
+</html>
