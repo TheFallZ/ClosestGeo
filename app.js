@@ -78,37 +78,31 @@ app.post('/find-country', async (req, res) => {
         let smallestDifference = Infinity;
         let chosenOption = '';
 
-        // Iterate through each country to find the closest one by distance
-        for (const country of countries) {
-            const NSDifference = Math.abs(country.distance.northSouth - distance);
-            const EWDifference = Math.abs(country.distance.westEast - distance);
-            
-            let difference;
-            let option;
+// Iterate through each country to find the closest one by distance
+for (const country of countries) {
+    let difference;
+    let option;
 
-            if (distanceOption === 'northSouth') {
-                difference = NSDifference;
-                option = 'North-South';
-            } else if (distanceOption === 'westEast') {
-                difference = EWDifference;
-                option = 'West-East';
-            } else if (distanceOption === 'both') {
-                // For 'both' option, choose the smaller difference
-                if (NSDifference < EWDifference) {
-                    difference = NSDifference;
-                    option = 'North-South';
-                } else {
-                    difference = EWDifference;
-                    option = 'West-East';
-                }
-            }
+    // Calculate both distances for 'both' option
+    const NSDifference = Math.abs(country.distance.northSouth - distance);
+    const EWDifference = Math.abs(country.distance.westEast - distance);
 
-            if (difference < smallestDifference) {
-                closestCountry = country;
-                smallestDifference = difference;
-                chosenOption = option;
-            }
-        }
+    // Check if the user selected 'westEast' option
+    if (distanceOption === 'westEast') {
+        difference = EWDifference;
+        option = 'West-East';
+    } else {
+        // Choose the smaller difference for 'both' option
+        difference = Math.min(NSDifference, EWDifference);
+        option = NSDifference <= EWDifference ? 'North-South' : 'West-East';
+    }
+
+    if (difference < smallestDifference) {
+        closestCountry = country;
+        smallestDifference = difference;
+        chosenOption = option;
+    }
+}
 
         console.log('Closest country by distance:', closestCountry); // Log closest country
 
