@@ -64,10 +64,6 @@ Contributions are welcome! If you have suggestions for improvements or new featu
     git push origin feature-branch
     ```
 5. Open a pull request.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ---
 
 Join us on this journey of geographical discovery with ClosestGeo! Whether you're a student, traveler, or geography enthusiast, we hope you find this tool both fun and educational.
