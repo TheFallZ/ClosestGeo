@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClosestGeo</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #000000, #000000);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        #result img {
+            max-width: 60%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border: 2px solid white;
+            border-radius: 8px;
+        }
+
+        #result {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #map {
+            width: 60%;
+            height: 50vh;
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDjQQUJWGM-QMnkXisfDyznRgrHxBCArI&callback=initMap" async defer></script>
+    
+</head>
+<body>
+    <div id="result"></div>
+    <div id="map"></div>
+    <script>
+        let map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 0, lng: 0 },
+                zoom: 2
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            const params = new URLSearchParams(window.location.search);
+            const address1 = params.get('address1');
+            const address2 = params.get('address2');
+            let distanceOption = params.get('distanceOption');
+
+            if (!address1 || !address2 || !distanceOption) {
+                document.getElementById('result').innerHTML = '<h2>Error: Missing address or distance option.</h2>';
+                return;
+            }
+
+            // Check if no distance option is selected
+            if (distanceOption === 'both') {
+                // Calculate both distances and choose the smallest one
+                const bothResponse = await calculateDistance(address1, address2, 'both');
+                const westEastResponse = await calculateDistance(address1, address2, 'westEast');
+                const northSouthResponse = await calculateDistance(address1, address2, 'northSouth');
+
+                // Choose the distance option with the smallest distance
+                if (westEastResponse.distance < bothResponse.distance && westEastResponse.distance < northSouthResponse.distance) {
+                    distanceOption = 'westEast';
+                } else if (northSouthResponse.distance < bothResponse.distance && northSouthResponse.distance < westEastResponse.distance) {
+                    distanceOption = 'northSouth';
+                } else {
+                    distanceOption = 'both';
+                }
+            }
+
+            try {
+                const response = await calculateDistance(address1, address2, distanceOption);
+
+                // Handle the response and update the UI
+                handleResponse(response);
+            } catch (error) {
+                document.getElementById('result').innerHTML = `<h2>Error: ${error.message}</h2>`;
+            }
+        });
+
+        // Function to calculate the distance based on the selected option
+        async function calculateDistance(address1, address2, distanceOption) {
+            const response = await fetch('/find-country', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ address1, address2, distanceOption })
+            });
+
+            if (!response.ok) {
+                throw new Error('Server response was not ok.');
+            }
+
+            return response.json();
+        }
+
+        // Function to handle the response and update the UI
+        function handleResponse(response) {
+            const resultDiv = document.getElementById('result');
+            const { country, distance, flagUrl, distanceOptionUsed, coordinates } = response;
+
+            // Parse distance as a number and format it to two decimal places
+            const numericDistance = parseFloat(distance);
+            const formattedDistance = numericDistance.toFixed(2);
+
+            resultDiv.innerHTML = `
+                <h2>Country: ${country}</h2>
+                <p>Distance: ${formattedDistance} miles</p>
+                <img src="${flagUrl}" alt="Flag of ${country}">
+                <p>Distance Option Used: ${distanceOptionUsed}</p>
+            `;
+
+            // Show the map and update it
+            const mapElement = document.getElementById('map');
+            mapElement.style.display = 'block';
+            updateMap(coordinates.latitude, coordinates.longitude);
+        }
+
+        function updateMap(lat, lon) {
+            map.setCenter({ lat: lat, lng: lon });
+            new google.maps.Marker({
+                position: { lat: lat, lng: lon },
+                map: map
+            });
+        }
+    </script>
+</body>
+</html>

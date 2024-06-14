@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClosestGeo</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #000000, #000000);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .address-form {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            display: inline-block;
+        }
+
+        .input-container {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 300px;
+            padding: 10px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            background-color: transparent;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button {
+            background-color: #ff6b6b;
+            border: none;
+            color: #fff;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e05252;
+        }
+        select {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+}
+
+/* Target the specific options */
+option[value="both"], option[value="westEast"], option[value="northSouth"] {
+    background-color: black;
+}
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ClosestGeo</h1>
+        <form class="address-form" id="addressForm">
+            <div class="input-container">
+                <label for="address1">Address 1:</label>
+                <input type="text" id="address1" name="address1" required>
+            </div>
+            <div class="input-container">
+                <label for="address2">Address 2:</label>
+                <input type="text" id="address2" name="address2" required>
+            </div>
+            <div class="input-container">
+                <label for="distanceOption">Distance Option:</label>
+                <select id="distanceOption" name="distanceOption">
+                    <option value="both">Both</option>
+                    <option value="westEast">West-East</option>
+                    <option value="northSouth">North-South</option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('addressForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            const address1 = document.getElementById('address1').value;
+            const address2 = document.getElementById('address2').value;
+            const distanceOption = document.getElementById('distanceOption').value;
+
+            // Redirect to results page with query parameters
+            window.location.href = `results.html?address1=${encodeURIComponent(address1)}&address2=${encodeURIComponent(address2)}&distanceOption=${encodeURIComponent(distanceOption)}`;
+        });
+    </script>
+</body>
+</html>
