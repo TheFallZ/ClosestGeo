@@ -12,8 +12,8 @@
   "license": "MIT",
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
-    "express": "^4.19.2",
-    "node-geocoder": "^4.3.0"
+    "express": "^5.3.0",
+    "node-geocoder": "^4.4.1"
   },
   "description": "Find the country whose length matches the distance between two places, drawn at true size on a map.",
   "engines": {
