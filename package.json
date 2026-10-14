@@ -9,14 +9,18 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
     "express": "^4.19.2",
     "node-geocoder": "^4.3.0"
   },
-  "description": "",
+  "description": "Find the country whose length matches the distance between two places, drawn at true size on a map.",
   "engines": {
     "node": ">=21.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheFallZ/ClosestGeo.git"
   }
 }

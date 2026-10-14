@@ -107,6 +107,14 @@ Contributions are welcome! If you have suggestions for improvements or new featu
     git push origin feature-branch
     ```
 5. Open a pull request.
+
+Run `npm test` before opening a pull request; the same tests run automatically on GitHub.
+
+## License
+ClosestGeo is released under the [MIT License](LICENSE).
+
+Country outlines come from [Natural Earth](https://www.naturalearthdata.com/) and country facts from [Wikidata](https://www.wikidata.org/), both public domain. Maps, address lookups and suggestions are provided by Google Maps Platform under [Google's terms](https://cloud.google.com/maps-platform/terms).
+
 ---
 
 Join us on this journey of geographical discovery with ClosestGeo! Whether you're a student, traveler, or geography enthusiast, we hope you find this tool both fun and educational.
