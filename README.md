@@ -20,10 +20,15 @@ ClosestGeo makes geography interactive and engaging. By entering two addresses, 
 - **How many fit?**: see how many copies of any country fit end to end between your places.
 - **Move and rotate**: drag the outline anywhere or rotate it; it stays at true size.
 - **Address suggestions**, **use my location**, or **pick places on a map**.
+- **Country facts**: capital, population, area and a size comparison ("About 1.5× the size of Texas").
+- **Map styles**: Simple, Atlas, Standard or Satellite, remembered between visits.
+- **Dark mode** that follows your device setting.
 - **Miles or kilometers**, remembered between visits.
 - **Shareable links** that reopen the same view and show a map preview image in chat apps.
 - **Recent searches** on the home page.
-- **Quiz mode**: guess the country drawn between two random cities.
+- **Daily challenge**: five rounds, the same for everyone each day, with a shareable result.
+- **Practice quiz** with Easy, Medium and Hard levels and a streak counter.
+- **Stats page** (`/stats.html`) with anonymous counts of matched countries, distances and quiz scores. No addresses, locations or IP addresses are stored.
 
 ## How It Works
 1. Enter two addresses into the form.
@@ -44,34 +49,40 @@ To run ClosestGeo locally, follow these steps:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/closestgeo.git
+    git clone https://github.com/TheFallZ/ClosestGeo.git
     ```
 2. **Navigate to the project directory**:
     ```bash
-    cd closestgeo
+    cd ClosestGeo
     ```
 3. **Install dependencies**:
     ```bash
     npm install
     ```
-4. **Add your API key**: copy `.env.example` to `.env` and set `GOOGLE_API_KEY`.
+4. **Add your API keys**: copy `.env.example` to `.env` and set `GOOGLE_API_KEY`. Optionally set `GOOGLE_MAPS_BROWSER_KEY` to a separate key restricted to your website for the maps and suggestions.
 5. **Start the server**:
     ```bash
     npm start
     ```
 6. **Open http://localhost:3000** in your preferred web browser.
 
+### Running the tests
+```bash
+npm test
+```
+The tests use Node's built-in test runner and never call Google. They also run automatically on GitHub for every push and pull request (`.github/workflows/test.yml`).
+
 ### Limits and caching
 Address lookups are cached in `data/geocode-cache.json`, so repeat searches don't call Google again. Each visitor can make up to 60 new lookups per 15 minutes (two per search); change `MAX_LOOKUPS` and `WINDOW_MS` in `lib/geocode.js` to adjust. Searches using map points, "use my location" or address suggestions skip the server lookup entirely, and so does the quiz.
 
 ### Updating the country data
-`countries/countries.json` lists the countries (name and 2-letter ISO code) and each one's west-east and north-south span. `countries/boundaries.json` holds the outlines drawn on the map. Both are generated from [Natural Earth](https://www.naturalearthdata.com/) public-domain boundaries.
+`countries/countries.json` lists the countries (name and 2-letter ISO code) and each one's west-east and north-south span. `countries/boundaries.json` holds the outlines drawn on the map. Both are generated from [Natural Earth](https://www.naturalearthdata.com/) public-domain boundaries. `countries/facts.json` (capital, population and area) comes from [Wikidata](https://www.wikidata.org/), also public domain.
 
 To add or remove a country, edit the list in `countries/countries.json` (the distances can be anything) and run:
 ```bash
 npm run build:countries
 ```
-This recalculates every span from the country's extreme points and rebuilds the outlines and the low-detail world map used for link preview images. Nearby islands count as part of a country; remote territories (such as Hawaii or the Chatham Islands) don't.
+This recalculates every span from the country's extreme points and rebuilds the outlines, the facts and the low-detail world map used for link preview images. Nearby islands count as part of a country; remote territories (such as Hawaii or the Chatham Islands) don't.
 
 ## Usage
 1. Open http://localhost:3000 in your web browser (with the server running).

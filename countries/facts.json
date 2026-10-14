@@ -1,0 +1,1381 @@
+{
+ "RU": {
+  "capitals": [
+   "Moscow"
+  ],
+  "population": 146119928,
+  "areaKm2": 17075400
+ },
+ "CA": {
+  "capitals": [
+   "Ottawa"
+  ],
+  "population": 36991981,
+  "areaKm2": 9984670
+ },
+ "CN": {
+  "capitals": [
+   "Beijing"
+  ],
+  "population": 1404890000,
+  "areaKm2": 9596961
+ },
+ "US": {
+  "capitals": [
+   "Washington, D.C."
+  ],
+  "population": 340110988,
+  "areaKm2": 9826675
+ },
+ "BR": {
+  "capitals": [
+   "Brasília"
+  ],
+  "population": 214211951,
+  "areaKm2": 8515767
+ },
+ "AU": {
+  "capitals": [
+   "Canberra"
+  ],
+  "population": 27614411,
+  "areaKm2": 7692024
+ },
+ "IN": {
+  "capitals": [
+   "New Delhi"
+  ],
+  "population": 1326093247,
+  "areaKm2": 3287263
+ },
+ "AR": {
+  "capitals": [
+   "Buenos Aires"
+  ],
+  "population": 47327407,
+  "areaKm2": 2780400
+ },
+ "KZ": {
+  "capitals": [
+   "Astana"
+  ],
+  "population": 20139914,
+  "areaKm2": 2724900
+ },
+ "DZ": {
+  "capitals": [
+   "Algiers"
+  ],
+  "population": 46164219,
+  "areaKm2": 2381741
+ },
+ "CD": {
+  "capitals": [
+   "Kinshasa"
+  ],
+  "population": 105789731,
+  "areaKm2": 2344858
+ },
+ "GL": {
+  "capitals": [
+   "Nuuk"
+  ],
+  "population": 56609,
+  "areaKm2": 2166086
+ },
+ "SA": {
+  "capitals": [
+   "Riyadh"
+  ],
+  "population": 33000000,
+  "areaKm2": 2250000
+ },
+ "MX": {
+  "capitals": [
+   "Mexico City"
+  ],
+  "population": 132274416,
+  "areaKm2": 1972550
+ },
+ "ID": {
+  "capitals": [
+   "Jakarta"
+  ],
+  "population": 275439000,
+  "areaKm2": 1904570
+ },
+ "SD": {
+  "capitals": [
+   "Khartoum"
+  ],
+  "population": 40533330,
+  "areaKm2": 1886068
+ },
+ "LY": {
+  "capitals": [
+   "Tripoli"
+  ],
+  "population": 7381023,
+  "areaKm2": 1759541
+ },
+ "IR": {
+  "capitals": [
+   "Tehran"
+  ],
+  "population": 92417700,
+  "areaKm2": 1648195
+ },
+ "MN": {
+  "capitals": [
+   "Ulaanbaatar"
+  ],
+  "population": 3409939,
+  "areaKm2": 1564116
+ },
+ "PE": {
+  "capitals": [
+   "Lima"
+  ],
+  "population": 34157732,
+  "areaKm2": 1285216
+ },
+ "TD": {
+  "capitals": [
+   "N'Djamena"
+  ],
+  "population": 19319064,
+  "areaKm2": 1284000
+ },
+ "NE": {
+  "capitals": [
+   "Niamey"
+  ],
+  "population": 21477348,
+  "areaKm2": 1267000
+ },
+ "AO": {
+  "capitals": [
+   "Luanda"
+  ],
+  "population": 36749906,
+  "areaKm2": 1246700
+ },
+ "ML": {
+  "capitals": [
+   "Bamako"
+  ],
+  "population": 22395489,
+  "areaKm2": 1240192
+ },
+ "ZA": {
+  "capitals": [
+   "Cape Town",
+   "Pretoria",
+   "Bloemfontein"
+  ],
+  "population": 62027503,
+  "areaKm2": 1221037
+ },
+ "CO": {
+  "capitals": [
+   "Bogotá"
+  ],
+  "population": 52321152,
+  "areaKm2": 1141748
+ },
+ "ET": {
+  "capitals": [
+   "Addis Ababa"
+  ],
+  "population": 128691692,
+  "areaKm2": 1104300
+ },
+ "BO": {
+  "capitals": [
+   "La Paz",
+   "Sucre"
+  ],
+  "population": 12244159,
+  "areaKm2": 1098581
+ },
+ "MR": {
+  "capitals": [
+   "Nouakchott"
+  ],
+  "population": 4736139,
+  "areaKm2": 1030700
+ },
+ "EG": {
+  "capitals": [
+   "Cairo"
+  ],
+  "population": 114535772,
+  "areaKm2": 1010408
+ },
+ "TZ": {
+  "capitals": [
+   "Dodoma"
+  ],
+  "population": 57310019,
+  "areaKm2": 947303
+ },
+ "NG": {
+  "capitals": [
+   "Abuja"
+  ],
+  "population": 211400708,
+  "areaKm2": 923768
+ },
+ "VE": {
+  "capitals": [
+   "Caracas"
+  ],
+  "population": 31250306,
+  "areaKm2": 912050
+ },
+ "PK": {
+  "capitals": [
+   "Islamabad"
+  ],
+  "population": 223773700,
+  "areaKm2": 881913
+ },
+ "NA": {
+  "capitals": [
+   "Windhoek"
+  ],
+  "population": 2533794,
+  "areaKm2": 825615
+ },
+ "MZ": {
+  "capitals": [
+   "Maputo"
+  ],
+  "population": 29668834,
+  "areaKm2": 801590
+ },
+ "TR": {
+  "capitals": [
+   "Ankara"
+  ],
+  "population": 85372377,
+  "areaKm2": 783562
+ },
+ "CL": {
+  "capitals": [
+   "Santiago"
+  ],
+  "population": 19458000,
+  "areaKm2": 756102
+ },
+ "ZM": {
+  "capitals": [
+   "Lusaka"
+  ],
+  "population": 19610769,
+  "areaKm2": 752618
+ },
+ "MM": {
+  "capitals": [
+   "Naypyidaw"
+  ],
+  "population": 53370609,
+  "areaKm2": 676577
+ },
+ "AF": {
+  "capitals": [
+   "Kabul"
+  ],
+  "population": 41454761,
+  "areaKm2": 652230
+ },
+ "SS": {
+  "capitals": [
+   "Juba"
+  ],
+  "population": 12575714,
+  "areaKm2": 644329
+ },
+ "FR": {
+  "capitals": [
+   "Paris"
+  ],
+  "population": 68605616,
+  "areaKm2": 643801
+ },
+ "SO": {
+  "capitals": [
+   "Mogadishu"
+  ],
+  "population": 11031386,
+  "areaKm2": 637657
+ },
+ "CF": {
+  "capitals": [
+   "Bangui"
+  ],
+  "population": 5152421,
+  "areaKm2": 622984
+ },
+ "UA": {
+  "capitals": [
+   "Kyiv"
+  ],
+  "population": 41167335,
+  "areaKm2": 603550
+ },
+ "MG": {
+  "capitals": [
+   "Antananarivo"
+  ],
+  "population": 31964956,
+  "areaKm2": 587295
+ },
+ "BW": {
+  "capitals": [
+   "Gaborone"
+  ],
+  "population": 2480244,
+  "areaKm2": 581737
+ },
+ "KE": {
+  "capitals": [
+   "Nairobi"
+  ],
+  "population": 48468138,
+  "areaKm2": 581309
+ },
+ "YE": {
+  "capitals": [
+   "Sanaa",
+   "Aden"
+  ],
+  "population": 28250420,
+  "areaKm2": 455503
+ },
+ "TH": {
+  "capitals": [
+   "Bangkok"
+  ],
+  "population": 66188503,
+  "areaKm2": 513120
+ },
+ "ES": {
+  "capitals": [
+   "Madrid"
+  ],
+  "population": 48592909,
+  "areaKm2": 505990
+ },
+ "CM": {
+  "capitals": [
+   "Yaoundé"
+  ],
+  "population": 28372687,
+  "areaKm2": 475442
+ },
+ "PG": {
+  "capitals": [
+   "Port Moresby"
+  ],
+  "population": 8935000,
+  "areaKm2": 462840
+ },
+ "SE": {
+  "capitals": [
+   "Stockholm"
+  ],
+  "population": 10609460,
+  "areaKm2": 447425
+ },
+ "UZ": {
+  "capitals": [
+   "Tashkent"
+  ],
+  "population": 34915100,
+  "areaKm2": 448978
+ },
+ "MA": {
+  "capitals": [
+   "Rabat"
+  ],
+  "population": 36828330,
+  "areaKm2": 446550
+ },
+ "IQ": {
+  "capitals": [
+   "Baghdad"
+  ],
+  "population": 38274618,
+  "areaKm2": 437072
+ },
+ "JP": {
+  "capitals": [
+   "Tokyo"
+  ],
+  "population": 123802000,
+  "areaKm2": 377974
+ },
+ "DE": {
+  "capitals": [
+   "Berlin"
+  ],
+  "population": 83467117,
+  "areaKm2": 357588
+ },
+ "CG": {
+  "capitals": [
+   "Brazzaville"
+  ],
+  "population": 6142180,
+  "areaKm2": 342000
+ },
+ "FI": {
+  "capitals": [
+   "Helsinki"
+  ],
+  "population": 5652881,
+  "areaKm2": 338478
+ },
+ "MY": {
+  "capitals": [
+   "Kuala Lumpur"
+  ],
+  "population": 34231700,
+  "areaKm2": 330803
+ },
+ "VN": {
+  "capitals": [
+   "Hanoi"
+  ],
+  "population": 96208984,
+  "areaKm2": 331690
+ },
+ "NO": {
+  "capitals": [
+   "Oslo"
+  ],
+  "population": 5627400,
+  "areaKm2": 385207
+ },
+ "CI": {
+  "capitals": [
+   "Yamoussoukro"
+  ],
+  "population": 31165654,
+  "areaKm2": 322463
+ },
+ "PL": {
+  "capitals": [
+   "Warsaw"
+  ],
+  "population": 37563071,
+  "areaKm2": 312683
+ },
+ "OM": {
+  "capitals": [
+   "Muscat"
+  ],
+  "population": 4829480,
+  "areaKm2": 309500
+ },
+ "IT": {
+  "capitals": [
+   "Rome"
+  ],
+  "population": 58850717,
+  "areaKm2": 302068
+ },
+ "PH": {
+  "capitals": [
+   "Manila"
+  ],
+  "population": 112729484,
+  "areaKm2": 343448
+ },
+ "EC": {
+  "capitals": [
+   "Quito"
+  ],
+  "population": 16938986,
+  "areaKm2": 257204
+ },
+ "BF": {
+  "capitals": [
+   "Ouagadougou"
+  ],
+  "population": 23025776,
+  "areaKm2": 274200
+ },
+ "NZ": {
+  "capitals": [
+   "Wellington"
+  ],
+  "population": 5307800,
+  "areaKm2": 268021
+ },
+ "GA": {
+  "capitals": [
+   "Libreville"
+  ],
+  "population": 2025137,
+  "areaKm2": 267667
+ },
+ "GN": {
+  "capitals": [
+   "Conakry"
+  ],
+  "population": 17521167,
+  "areaKm2": 245857
+ },
+ "GB": {
+  "capitals": [
+   "London"
+  ],
+  "population": 67326569,
+  "areaKm2": 242495
+ },
+ "UG": {
+  "capitals": [
+   "Kampala"
+  ],
+  "population": 47123531,
+  "areaKm2": 241038
+ },
+ "GH": {
+  "capitals": [
+   "Accra"
+  ],
+  "population": 32833031,
+  "areaKm2": 238535
+ },
+ "RO": {
+  "capitals": [
+   "Bucharest"
+  ],
+  "population": 19053815,
+  "areaKm2": 238397
+ },
+ "LA": {
+  "capitals": [
+   "Vientiane"
+  ],
+  "population": 6858160,
+  "areaKm2": 236800
+ },
+ "GY": {
+  "capitals": [
+   "Georgetown"
+  ],
+  "population": 878674,
+  "areaKm2": 214970
+ },
+ "BY": {
+  "capitals": [
+   "Minsk"
+  ],
+  "population": 9056080,
+  "areaKm2": 207597
+ },
+ "KG": {
+  "capitals": [
+   "Bishkek"
+  ],
+  "population": 7281800,
+  "areaKm2": 199951
+ },
+ "SN": {
+  "capitals": [
+   "Dakar"
+  ],
+  "population": 16876720,
+  "areaKm2": 196722
+ },
+ "SY": {
+  "capitals": [
+   "Damascus"
+  ],
+  "population": 23865423,
+  "areaKm2": 185180
+ },
+ "KH": {
+  "capitals": [
+   "Phnom Penh"
+  ],
+  "population": 17423880,
+  "areaKm2": 181035
+ },
+ "UY": {
+  "capitals": [
+   "Montevideo"
+  ],
+  "population": 3444263,
+  "areaKm2": 176215
+ },
+ "SR": {
+  "capitals": [
+   "Paramaribo"
+  ],
+  "population": 563402,
+  "areaKm2": 163270
+ },
+ "TN": {
+  "capitals": [
+   "Tunis"
+  ],
+  "population": 11565204,
+  "areaKm2": 163610
+ },
+ "NP": {
+  "capitals": [
+   "Kathmandu"
+  ],
+  "population": 29164578,
+  "areaKm2": 147181
+ },
+ "BD": {
+  "capitals": [
+   "Dhaka"
+  ],
+  "population": 171466990,
+  "areaKm2": 147570
+ },
+ "TJ": {
+  "capitals": [
+   "Dushanbe"
+  ],
+  "population": 9504000,
+  "areaKm2": 143100
+ },
+ "GR": {
+  "capitals": [
+   "Athens"
+  ],
+  "population": 10482487,
+  "areaKm2": 131957
+ },
+ "NI": {
+  "capitals": [
+   "Managua"
+  ],
+  "population": 5142098,
+  "areaKm2": 120340
+ },
+ "KP": {
+  "capitals": [
+   "Pyongyang"
+  ],
+  "population": 26418204,
+  "areaKm2": 120540
+ },
+ "MW": {
+  "capitals": [
+   "Lilongwe"
+  ],
+  "population": 17563749,
+  "areaKm2": 118484
+ },
+ "ER": {
+  "capitals": [
+   "Asmara"
+  ],
+  "population": 3497000,
+  "areaKm2": 117600
+ },
+ "BJ": {
+  "capitals": [
+   "Porto-Novo"
+  ],
+  "population": 14111034,
+  "areaKm2": 114763
+ },
+ "HN": {
+  "capitals": [
+   "Tegucigalpa"
+  ],
+  "population": 8303771,
+  "areaKm2": 112492
+ },
+ "LR": {
+  "capitals": [
+   "Monrovia"
+  ],
+  "population": 5214030,
+  "areaKm2": 111369
+ },
+ "BG": {
+  "capitals": [
+   "Sofia"
+  ],
+  "population": 6423207,
+  "areaKm2": 110994
+ },
+ "CU": {
+  "capitals": [
+   "Havana"
+  ],
+  "population": 10985974,
+  "areaKm2": 109884
+ },
+ "GT": {
+  "capitals": [
+   "Guatemala City"
+  ],
+  "population": 17263239,
+  "areaKm2": 108889
+ },
+ "IS": {
+  "capitals": [
+   "Reykjavík"
+  ],
+  "population": 364260,
+  "areaKm2": 103004
+ },
+ "KR": {
+  "capitals": [
+   "Seoul"
+  ],
+  "population": 51466201,
+  "areaKm2": 100295
+ },
+ "HU": {
+  "capitals": [
+   "Budapest"
+  ],
+  "population": 9603634,
+  "areaKm2": 93011
+ },
+ "PT": {
+  "capitals": [
+   "Lisbon"
+  ],
+  "population": 10347892,
+  "areaKm2": 92225
+ },
+ "JO": {
+  "capitals": [
+   "Amman"
+  ],
+  "population": 10428241,
+  "areaKm2": 89341
+ },
+ "RS": {
+  "capitals": [
+   "Belgrade"
+  ],
+  "population": 6605168,
+  "areaKm2": 88499
+ },
+ "AZ": {
+  "capitals": [
+   "Baku"
+  ],
+  "population": 10180770,
+  "areaKm2": 86600
+ },
+ "AT": {
+  "capitals": [
+   "Vienna"
+  ],
+  "population": 8979894,
+  "areaKm2": 83879
+ },
+ "AE": {
+  "capitals": [
+   "Abu Dhabi"
+  ],
+  "population": 9890400,
+  "areaKm2": 83600
+ },
+ "CZ": {
+  "capitals": [
+   "Prague"
+  ],
+  "population": 10909500,
+  "areaKm2": 78871
+ },
+ "PA": {
+  "capitals": [
+   "Panama City"
+  ],
+  "population": 4570133,
+  "areaKm2": 74177
+ },
+ "SL": {
+  "capitals": [
+   "Freetown"
+  ],
+  "population": 7557212,
+  "areaKm2": 71740
+ },
+ "IE": {
+  "capitals": [
+   "Dublin"
+  ],
+  "population": 5149139,
+  "areaKm2": 69797
+ },
+ "GE": {
+  "capitals": [
+   "Tbilisi"
+  ],
+  "population": 3929581,
+  "areaKm2": 69700
+ },
+ "LK": {
+  "capitals": [
+   "Sri Jayawardenepura Kotte",
+   "Colombo"
+  ],
+  "population": 21444000,
+  "areaKm2": 65610
+ },
+ "LT": {
+  "capitals": [
+   "Vilnius"
+  ],
+  "population": 2860002,
+  "areaKm2": 65300
+ },
+ "LV": {
+  "capitals": [
+   "Riga"
+  ],
+  "population": 1845096,
+  "areaKm2": 64594
+ },
+ "TG": {
+  "capitals": [
+   "Lomé"
+  ],
+  "population": 7797694,
+  "areaKm2": 56785
+ },
+ "HR": {
+  "capitals": [
+   "Zagreb"
+  ],
+  "population": 3871833,
+  "areaKm2": 56594
+ },
+ "BA": {
+  "capitals": [
+   "Sarajevo"
+  ],
+  "population": 3816459,
+  "areaKm2": 51209
+ },
+ "CR": {
+  "capitals": [
+   "San José"
+  ],
+  "population": 5265575,
+  "areaKm2": 51180
+ },
+ "SK": {
+  "capitals": [
+   "Bratislava"
+  ],
+  "population": 5409407,
+  "areaKm2": 49034
+ },
+ "DO": {
+  "capitals": [
+   "Santo Domingo"
+  ],
+  "population": 10760028,
+  "areaKm2": 48671
+ },
+ "EE": {
+  "capitals": [
+   "Tallinn"
+  ],
+  "population": 1369995,
+  "areaKm2": 45335
+ },
+ "DK": {
+  "capitals": [
+   "Copenhagen"
+  ],
+  "population": 5822863,
+  "areaKm2": 42925
+ },
+ "NL": {
+  "capitals": [
+   "Amsterdam"
+  ],
+  "population": 17100715,
+  "areaKm2": 42201
+ },
+ "CH": {
+  "capitals": [
+   "Bern"
+  ],
+  "population": 9104063,
+  "areaKm2": 41291
+ },
+ "BT": {
+  "capitals": [
+   "Thimphu"
+  ],
+  "population": 787424,
+  "areaKm2": 38394
+ },
+ "TW": {
+  "capitals": [
+   "Taipei"
+  ],
+  "population": 23317031,
+  "areaKm2": 36193
+ },
+ "GW": {
+  "capitals": [
+   "Bissau"
+  ],
+  "population": 1861283,
+  "areaKm2": 36125
+ },
+ "MD": {
+  "capitals": [
+   "Chișinău"
+  ],
+  "population": 2409207,
+  "areaKm2": 33844
+ },
+ "BE": {
+  "capitals": [
+   "Brussels"
+  ],
+  "population": 11825551,
+  "areaKm2": 30688
+ },
+ "LS": {
+  "capitals": [
+   "Maseru"
+  ],
+  "population": 2007201,
+  "areaKm2": 30355
+ },
+ "AM": {
+  "capitals": [
+   "Yerevan"
+  ],
+  "population": 2930450,
+  "areaKm2": 29743
+ },
+ "SB": {
+  "capitals": [
+   "Honiara"
+  ],
+  "population": 611343,
+  "areaKm2": 28400
+ },
+ "GQ": {
+  "capitals": [
+   "Ciudad de la Paz"
+  ],
+  "population": 1847549,
+  "areaKm2": 28051
+ },
+ "BI": {
+  "capitals": [
+   "Gitega"
+  ],
+  "population": 13689450,
+  "areaKm2": 27834
+ },
+ "HT": {
+  "capitals": [
+   "Port-au-Prince"
+  ],
+  "population": 10981229,
+  "areaKm2": 27750
+ },
+ "RW": {
+  "capitals": [
+   "Kigali"
+  ],
+  "population": 14569341,
+  "areaKm2": 26338
+ },
+ "MK": {
+  "capitals": [
+   "Skopje"
+  ],
+  "population": 1836713,
+  "areaKm2": 25713
+ },
+ "DJ": {
+  "capitals": [
+   "Djibouti"
+  ],
+  "population": 1152944,
+  "areaKm2": 23200
+ },
+ "BZ": {
+  "capitals": [
+   "Belmopan"
+  ],
+  "population": 411106,
+  "areaKm2": 22966
+ },
+ "SV": {
+  "capitals": [
+   "San Salvador"
+  ],
+  "population": 6029976,
+  "areaKm2": 21041
+ },
+ "SI": {
+  "capitals": [
+   "Ljubljana"
+  ],
+  "population": 2066880,
+  "areaKm2": 20271
+ },
+ "FJ": {
+  "capitals": [
+   "Suva"
+  ],
+  "population": 926276,
+  "areaKm2": 18274
+ },
+ "KW": {
+  "capitals": [
+   "Kuwait City"
+  ],
+  "population": 4464000,
+  "areaKm2": 17818
+ },
+ "SZ": {
+  "capitals": [
+   "Mbabane",
+   "Lobamba"
+  ],
+  "population": 1230506,
+  "areaKm2": 17364
+ },
+ "TL": {
+  "capitals": [
+   "Dili"
+  ],
+  "population": 1400638,
+  "areaKm2": 14919
+ },
+ "BS": {
+  "capitals": [
+   "Nassau"
+  ],
+  "population": 399440,
+  "areaKm2": 13878
+ },
+ "ME": {
+  "capitals": [
+   "Podgorica"
+  ],
+  "population": 617213,
+  "areaKm2": 13883
+ },
+ "VU": {
+  "capitals": [
+   "Port Vila"
+  ],
+  "population": 300019,
+  "areaKm2": 12190
+ },
+ "QA": {
+  "capitals": [
+   "Doha"
+  ],
+  "population": 2639211,
+  "areaKm2": 11437
+ },
+ "GM": {
+  "capitals": [
+   "Banjul"
+  ],
+  "population": 2639916,
+  "areaKm2": 11300
+ },
+ "JM": {
+  "capitals": [
+   "Kingston"
+  ],
+  "population": 2697983,
+  "areaKm2": 10992
+ },
+ "LB": {
+  "capitals": [
+   "Beirut"
+  ],
+  "population": 6100075,
+  "areaKm2": 10452
+ },
+ "CY": {
+  "capitals": [
+   "Nicosia"
+  ],
+  "population": 1344976,
+  "areaKm2": 9242
+ },
+ "BN": {
+  "capitals": [
+   "Bandar Seri Begawan"
+  ],
+  "population": 458949,
+  "areaKm2": 5765
+ },
+ "TT": {
+  "capitals": [
+   "Port of Spain"
+  ],
+  "population": 1369125,
+  "areaKm2": 5128
+ },
+ "CV": {
+  "capitals": [
+   "Praia"
+  ],
+  "population": 555988,
+  "areaKm2": 4033
+ },
+ "WS": {
+  "capitals": [
+   "Apia"
+  ],
+  "population": 200010,
+  "areaKm2": 2842
+ },
+ "LU": {
+  "capitals": [
+   "Luxembourg"
+  ],
+  "population": 690959,
+  "areaKm2": 2593
+ },
+ "KM": {
+  "capitals": [
+   "Moroni"
+  ],
+  "population": 902348,
+  "areaKm2": 2034
+ },
+ "MU": {
+  "capitals": [
+   "Port Louis"
+  ],
+  "population": 1264613,
+  "areaKm2": 2040
+ },
+ "ST": {
+  "capitals": [
+   "São Tomé"
+  ],
+  "population": 204327,
+  "areaKm2": 1001
+ },
+ "KI": {
+  "capitals": [
+   "South Tarawa"
+  ],
+  "population": 134518,
+  "areaKm2": 811
+ },
+ "DM": {
+  "capitals": [
+   "Roseau"
+  ],
+  "population": 74656,
+  "areaKm2": 751
+ },
+ "TO": {
+  "capitals": [
+   "Nukuʻalofa"
+  ],
+  "population": 108020,
+  "areaKm2": 749
+ },
+ "FM": {
+  "capitals": [
+   "Palikir"
+  ],
+  "population": 75817,
+  "areaKm2": 702
+ },
+ "SG": {
+  "capitals": [
+   "Singapore"
+  ],
+  "population": 5866139,
+  "areaKm2": 719
+ },
+ "BH": {
+  "capitals": [
+   "Manama"
+  ],
+  "population": 1569666,
+  "areaKm2": 787
+ },
+ "LC": {
+  "capitals": [
+   "Castries"
+  ],
+  "population": 167591,
+  "areaKm2": 617
+ },
+ "AD": {
+  "capitals": [
+   "Andorra la Vella"
+  ],
+  "population": 89752,
+  "areaKm2": 468
+ },
+ "PW": {
+  "capitals": [
+   "Ngerulmud"
+  ],
+  "population": 21729,
+  "areaKm2": 466
+ },
+ "SC": {
+  "capitals": [
+   "Victoria"
+  ],
+  "population": 119773,
+  "areaKm2": 459
+ },
+ "AG": {
+  "capitals": [
+   "Q36262"
+  ],
+  "population": 101489,
+  "areaKm2": 440
+ },
+ "BB": {
+  "capitals": [
+   "Bridgetown"
+  ],
+  "population": 303431,
+  "areaKm2": 439
+ },
+ "VC": {
+  "capitals": [
+   "Kingstown"
+  ],
+  "population": 109897,
+  "areaKm2": 389
+ },
+ "GD": {
+  "capitals": [
+   "St. George's"
+  ],
+  "population": 114299,
+  "areaKm2": 349
+ },
+ "MT": {
+  "capitals": [
+   "Valletta"
+  ],
+  "population": 553214,
+  "areaKm2": 316
+ },
+ "MV": {
+  "capitals": [
+   "Malé"
+  ],
+  "population": 436330,
+  "areaKm2": 298
+ },
+ "KN": {
+  "capitals": [
+   "Basseterre"
+  ],
+  "population": 46922,
+  "areaKm2": 269
+ },
+ "MH": {
+  "capitals": [
+   "Majuro"
+  ],
+  "population": 53127,
+  "areaKm2": 181
+ },
+ "LI": {
+  "capitals": [
+   "Vaduz"
+  ],
+  "population": 37922,
+  "areaKm2": 160
+ },
+ "SM": {
+  "capitals": [
+   "San Marino"
+  ],
+  "population": 34167,
+  "areaKm2": 61
+ },
+ "TV": {
+  "capitals": [
+   "Funafuti"
+  ],
+  "population": 10643,
+  "areaKm2": 25
+ },
+ "NR": {
+  "capitals": [
+   "Yaren District"
+  ],
+  "population": 13650,
+  "areaKm2": 21
+ },
+ "MC": {
+  "capitals": [
+   "Monaco"
+  ],
+  "population": 38857,
+  "areaKm2": 2.08
+ },
+ "VA": {
+  "capitals": [
+   "Vatican City"
+  ],
+  "population": 882,
+  "areaKm2": 0.49
+ },
+ "AL": {
+  "capitals": [
+   "Tirana"
+  ],
+  "population": 2811655,
+  "areaKm2": 28748
+ },
+ "PY": {
+  "capitals": [
+   "Asunción"
+  ],
+  "population": 6811297,
+  "areaKm2": 406756
+ },
+ "TM": {
+  "capitals": [
+   "Ashgabat"
+  ],
+  "population": 6117933,
+  "areaKm2": 491210
+ },
+ "ZW": {
+  "capitals": [
+   "Harare"
+  ],
+  "population": 15178979,
+  "areaKm2": 390757
+ },
+ "PS": {
+  "capitals": [
+   "East Jerusalem",
+   "Ramallah"
+  ],
+  "population": 5227193,
+  "areaKm2": 6020
+ }
+}

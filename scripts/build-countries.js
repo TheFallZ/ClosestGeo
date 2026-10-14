@@ -9,6 +9,7 @@
 //   - countries/countries.json:  each country's westEast / northSouth span in miles, measured
 //                                between its extreme points (the same points the map lines up)
 //   - countries/basemap.json:    low-detail outlines of every country, used to draw link preview images
+//   - countries/facts.json:      capital, population and area of each country, from Wikidata
 
 const fs = require('fs');
 const os = require('os');
@@ -20,6 +21,8 @@ const BASEMAP_SOURCE = 'ne_110m_admin_0_countries.geojson';
 const COUNTRIES_FILE = path.join(__dirname, '..', 'countries', 'countries.json');
 const BOUNDARIES_FILE = path.join(__dirname, '..', 'countries', 'boundaries.json');
 const BASEMAP_FILE = path.join(__dirname, '..', 'countries', 'basemap.json');
+const FACTS_FILE = path.join(__dirname, '..', 'countries', 'facts.json');
+const WIKIDATA_URL = 'https://query.wikidata.org/sparql';
 
 // Islands within this distance of the main landmass (chained) count as part of the country,
 // so nearby islands are kept but remote territories (Hawaii, Chatham Islands, overseas France) aren't
@@ -143,6 +146,46 @@ async function loadNaturalEarth(fileName) {
     return JSON.parse(fs.readFileSync(cacheFile, 'utf8'));
 }
 
+// Capital, population and area (km²) per country from Wikidata (public domain), using the
+// values Wikidata marks as current. Countries with several capitals list them all.
+async function buildFacts(countries) {
+    const query = `
+        SELECT ?code ?capitalLabel ?population ?area WHERE {
+            ?country wdt:P297 ?code .
+            OPTIONAL { ?country p:P1082 ?ps . ?ps ps:P1082 ?population . ?ps a wikibase:BestRank . }
+            OPTIONAL { ?country p:P2046 ?as . ?as psv:P2046 ?av . ?av wikibase:quantityAmount ?area ;
+                       wikibase:quantityUnit wd:Q712226 . ?as a wikibase:BestRank . }
+            OPTIONAL { ?country p:P36 ?cs . ?cs ps:P36 ?capital . ?cs a wikibase:BestRank . }
+            SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+        }`;
+    console.log('Downloading country facts from Wikidata');
+    const response = await fetch(`${WIKIDATA_URL}?query=${encodeURIComponent(query)}`, {
+        headers: { Accept: 'application/sparql-results+json', 'User-Agent': 'ClosestGeo-build/1.0 (https://github.com/TheFallZ/ClosestGeo)' }
+    });
+    if (!response.ok) throw new Error(`Wikidata request failed: ${response.status} ${response.statusText}`);
+
+    const byCode = {};
+    for (const row of (await response.json()).results.bindings) {
+        const entry = byCode[row.code.value] ||= { capitals: [], population: 0, areaKm2: 0 };
+        const capital = row.capitalLabel && row.capitalLabel.value;
+        if (capital && !entry.capitals.includes(capital)) entry.capitals.push(capital);
+        if (row.population) entry.population = Math.max(entry.population, Number(row.population.value));
+        if (row.area) entry.areaKm2 = Math.max(entry.areaKm2, Number(row.area.value));
+    }
+
+    const facts = {};
+    for (const country of countries) {
+        const entry = byCode[country.countryCode.toUpperCase()];
+        if (!entry) continue;
+        facts[country.countryCode.toUpperCase()] = {
+            capitals: entry.capitals,
+            population: entry.population || null,
+            areaKm2: entry.areaKm2 ? +entry.areaKm2.toFixed(entry.areaKm2 < 10 ? 2 : 0) : null
+        };
+    }
+    fs.writeFileSync(FACTS_FILE, JSON.stringify(facts, null, 1));
+}
+
 // Outer rings of every country, rounded to ~1 km: [[lng, lat], ...] per ring
 async function buildBasemap() {
     const naturalEarth = await loadNaturalEarth(BASEMAP_SOURCE);
@@ -193,7 +236,8 @@ async function main() {
     );
     fs.writeFileSync(COUNTRIES_FILE, '[\n' + lines.join(',\n') + '\n]\n');
     await buildBasemap();
-    console.log(`Rebuilt ${countries.length} countries and the preview basemap.`);
+    await buildFacts(countries);
+    console.log(`Rebuilt ${countries.length} countries, their facts and the preview basemap.`);
 }
 
 main().catch(error => {

@@ -1,13 +1,47 @@
 // Helpers shared by the ClosestGeo pages: map loading and drawing, units, requests and history.
 const ClosestGeo = (() => {
-    const COLORS = {
-        ink: '#2f2a24',
-        paper: '#fdfaf3',
-        country: '#c4553a',
-        accent: '#2f6b73'
-    };
+    // Dark mode follows the device setting, read once when the page loads
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    // Muted map colors: parchment land, soft blue-green sea, no roads or businesses
+    // ink: pins and route line; paper: outlines around them
+    const COLORS = isDark
+        ? { ink: '#ece4d6', paper: '#1f1c18', pinLabel: '#1f1c18', country: '#e0775c' }
+        : { ink: '#2f2a24', paper: '#fdfaf3', pinLabel: '#ffffff', country: '#c4553a' };
+
+    // Map styles visitors can pick from. Custom styles hide roads, businesses and transit so the
+    // country outline stands out; Simple and Atlas each have a dark version for dark mode.
+    const HIDE_CLUTTER = [
+        { featureType: 'road', stylers: [{ visibility: 'off' }] },
+        { featureType: 'poi', stylers: [{ visibility: 'off' }] },
+        { featureType: 'transit', stylers: [{ visibility: 'off' }] }
+    ];
+
+    // Simple: light gray land, pale blue water
+    const SIMPLE_STYLE = [
+        { elementType: 'geometry', stylers: [{ color: '#f2f2f0' }] },
+        { elementType: 'labels.text.fill', stylers: [{ color: '#5f6368' }] },
+        { elementType: 'labels.text.stroke', stylers: [{ color: '#ffffff' }] },
+        { featureType: 'landscape.natural', elementType: 'geometry', stylers: [{ color: '#ededea' }] },
+        { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c9dbe6' }] },
+        { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#7a8f9c' }] },
+        { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#9aa0a6' }, { weight: 1 }] },
+        { featureType: 'administrative.province', elementType: 'geometry.stroke', stylers: [{ color: '#c5c8cc' }, { weight: 0.6 }] },
+        ...HIDE_CLUTTER
+    ];
+
+    const SIMPLE_STYLE_DARK = [
+        { elementType: 'geometry', stylers: [{ color: '#262626' }] },
+        { elementType: 'labels.text.fill', stylers: [{ color: '#a8a8a8' }] },
+        { elementType: 'labels.text.stroke', stylers: [{ color: '#1a1a1a' }] },
+        { featureType: 'landscape.natural', elementType: 'geometry', stylers: [{ color: '#2b2b2b' }] },
+        { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#1c2a33' }] },
+        { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#6b8594' }] },
+        { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#6b6f73' }, { weight: 1 }] },
+        { featureType: 'administrative.province', elementType: 'geometry.stroke', stylers: [{ color: '#45484b' }, { weight: 0.6 }] },
+        ...HIDE_CLUTTER
+    ];
+
+    // Atlas: parchment land, soft blue-green sea
     const MAP_STYLE = [
         { elementType: 'geometry', stylers: [{ color: '#efe3c4' }] },
         { elementType: 'labels.text.fill', stylers: [{ color: '#5b4636' }] },
@@ -21,6 +55,60 @@ const ClosestGeo = (() => {
         { featureType: 'poi', stylers: [{ visibility: 'off' }] },
         { featureType: 'transit', stylers: [{ visibility: 'off' }] }
     ];
+
+    // Atlas in dark mode: charcoal land, deep blue-green sea
+    const MAP_STYLE_DARK = [
+        { elementType: 'geometry', stylers: [{ color: '#2b2925' }] },
+        { elementType: 'labels.text.fill', stylers: [{ color: '#b8ab97' }] },
+        { elementType: 'labels.text.stroke', stylers: [{ color: '#1f1c18' }] },
+        { featureType: 'landscape.natural', elementType: 'geometry', stylers: [{ color: '#302d28' }] },
+        { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#1b3134' }] },
+        { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#6f9599' }] },
+        { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#7a6a58' }, { weight: 1.2 }] },
+        { featureType: 'administrative.province', elementType: 'geometry.stroke', stylers: [{ color: '#544a3f' }, { weight: 0.6 }] },
+        { featureType: 'road', stylers: [{ visibility: 'off' }] },
+        { featureType: 'poi', stylers: [{ visibility: 'off' }] },
+        { featureType: 'transit', stylers: [{ visibility: 'off' }] }
+    ];
+
+    const MAP_STYLES = {
+        simple: { label: 'Simple', options: { mapTypeId: 'roadmap', styles: isDark ? SIMPLE_STYLE_DARK : SIMPLE_STYLE } },
+        atlas: { label: 'Atlas', options: { mapTypeId: 'roadmap', styles: isDark ? MAP_STYLE_DARK : MAP_STYLE } },
+        standard: { label: 'Standard', options: { mapTypeId: 'roadmap', styles: [] } },
+        satellite: { label: 'Satellite', options: { mapTypeId: 'hybrid', styles: [], tilt: 0 } }
+    };
+    const MAP_STYLE_KEY = 'closestgeo-map-style';
+
+    function getMapStyle() {
+        try {
+            const style = localStorage.getItem(MAP_STYLE_KEY);
+            return MAP_STYLES[style] ? style : 'simple';
+        } catch {
+            return 'simple';
+        }
+    }
+
+    function setMapStyle(style) {
+        try {
+            localStorage.setItem(MAP_STYLE_KEY, style);
+        } catch {
+            // Storage unavailable; the choice just won't be remembered
+        }
+    }
+
+    // Adds the map style menu to a map's top-right corner
+    function addStyleControl(map) {
+        const select = document.createElement('select');
+        select.className = 'map-style-select';
+        select.setAttribute('aria-label', 'Map style');
+        select.innerHTML = Object.entries(MAP_STYLES).map(([value, { label }]) => `<option value="${value}">${label}</option>`).join('');
+        select.value = getMapStyle();
+        select.addEventListener('change', () => {
+            setMapStyle(select.value);
+            map.setOptions(MAP_STYLES[select.value].options);
+        });
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(select);
+    }
 
     // Teardrop map pin, 24 x 36 with its tip at the bottom
     const PIN_PATH = 'M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z';
@@ -52,15 +140,17 @@ const ClosestGeo = (() => {
     }
 
     function createMap(element, options = {}) {
-        return new google.maps.Map(element, {
+        const map = new google.maps.Map(element, {
             center: { lat: 20, lng: 0 },
             zoom: 2,
-            styles: MAP_STYLE,
+            ...MAP_STYLES[getMapStyle()].options,
             mapTypeControl: false,
             streetViewControl: false,
-            backgroundColor: '#eadab4',
+            backgroundColor: isDark ? '#262626' : '#f2f2f0',
             ...options
         });
+        addStyleControl(map);
+        return map;
     }
 
     function pinMarker(map, position, label, title) {
@@ -69,7 +159,7 @@ const ClosestGeo = (() => {
             map,
             title,
             zIndex: 4,
-            label: { text: label, color: '#ffffff', fontWeight: '600', fontSize: '13px' },
+            label: { text: label, color: COLORS.pinLabel, fontWeight: '600', fontSize: '13px' },
             icon: {
                 path: PIN_PATH,
                 fillColor: COLORS.ink,
@@ -100,20 +190,34 @@ const ClosestGeo = (() => {
         });
     }
 
-    // Dashed great-circle line between two points
+    // Dashed great-circle line between two points, over a faint solid line so it stays visible
+    // on any map style (including satellite imagery)
     function dashedLine(map, a, b) {
-        return new google.maps.Polyline({
+        const underlay = new google.maps.Polyline({
+            path: [a, b],
+            geodesic: true,
+            map,
+            strokeColor: COLORS.paper,
+            strokeOpacity: 0.6,
+            strokeWeight: 6,
+            zIndex: 2,
+            clickable: false
+        });
+        const dashes = new google.maps.Polyline({
             path: [a, b],
             geodesic: true,
             map,
             strokeOpacity: 0,
             zIndex: 2,
+            clickable: false,
             icons: [{
                 icon: { path: 'M 0,-1 0,1', strokeOpacity: 1, strokeColor: COLORS.ink, strokeWeight: 3, scale: 3 },
                 offset: '0',
                 repeat: '14px'
             }]
         });
+        // Removing the line (setMap(null)) removes both parts
+        return { setMap: (target) => { underlay.setMap(target); dashes.setMap(target); } };
     }
 
     function countryPolygon(map, rings, options = {}) {

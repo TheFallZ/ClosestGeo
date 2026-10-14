@@ -4,6 +4,14 @@
     const { escapeHtml, formatDistance, distanceWords } = ClosestGeo;
     const METERS_PER_MILE = 1609.344;
     const MAX_COPIES = 100;
+    const KM2_PER_MI2 = 2.589988;
+    // Familiar places to compare a country's area with (km²)
+    const AREA_REFERENCES = [
+        ['Manhattan', 59], ['Washington, D.C.', 177], ['Rhode Island', 4001], ['Connecticut', 14357],
+        ['Belgium', 30689], ['Ireland', 70273], ['Portugal', 92212], ['the United Kingdom', 243610],
+        ['Germany', 357588], ['California', 423970], ['Texas', 695662], ['Alaska', 1723337],
+        ['Australia', 7692024], ['the United States', 9833520], ['Russia', 17098246]
+    ];
     // Well-known countries offered first as the "how many fit" yardstick
     const FIT_DEFAULTS = ['BE', 'CH', 'NL', 'IE', 'PT', 'AT', 'GB', 'IT', 'DE', 'JP', 'FR', 'ES', 'EG', 'MX', 'AU', 'BR', 'US', 'CA', 'RU'];
 
@@ -52,11 +60,13 @@
             if (view.match) renderCard();
         });
         try {
-            const [data] = await Promise.all([
+            const [data, countryList] = await Promise.all([
                 ClosestGeo.postJson('/find-country', input),
+                fetch('/countries').then(response => response.json()),
                 ClosestGeo.loadGoogleMaps()
             ]);
             result = data;
+            countries = countryList;
             map = ClosestGeo.createMap($('map'));
             [pointA, pointB] = result.locations.map(l => ({ lat: l.latitude, lng: l.longitude }));
 
@@ -72,7 +82,7 @@
 
             saveToHistory();
             setUpControls();
-            await setUpFitPicker();
+            setUpFitPicker();
             if (params.get('fit')) await showFit(params.get('fit'));
         } catch (error) {
             showError('Search failed', error.message);
@@ -202,9 +212,49 @@
         $('route').innerHTML = result.locations.map((l, i) =>
             `<li><strong>${i === 0 ? 'A' : 'B'}</strong> ${escapeHtml(l.address)}</li>`).join('');
 
+        renderFacts();
         renderLegend();
         renderFitText();
         document.title = `${match.country} · ClosestGeo`;
+    }
+
+    // Capital, population, area and an area comparison with a familiar place
+    function renderFacts() {
+        const country = countries.find(c => c.countryCode === view.match.countryCode);
+        const facts = country && country.facts;
+        $('facts').hidden = !facts;
+        $('factsComparison').hidden = !facts;
+        if (!facts) return;
+
+        const unit = ClosestGeo.getUnit();
+        const rows = [];
+        if (facts.capitals.length) rows.push([facts.capitals.length > 1 ? 'Capitals' : 'Capital', facts.capitals.join(' · ')]);
+        if (facts.population) rows.push(['Population', formatPopulation(facts.population)]);
+        if (facts.areaKm2) {
+            const area = unit === 'km' ? facts.areaKm2 : facts.areaKm2 / KM2_PER_MI2;
+            rows.push(['Area', `${formatArea(area)} ${unit}²`]);
+        }
+        $('facts').innerHTML = rows.map(([label, value]) => `<div><dt>${label}</dt><dd>${escapeHtml(value)}</dd></div>`).join('');
+        $('factsComparison').textContent = facts.areaKm2 ? compareArea(view.match.country, facts.areaKm2) : '';
+    }
+
+    function formatPopulation(people) {
+        if (people >= 1e9) return `${(people / 1e9).toFixed(2)} billion`;
+        if (people >= 1e6) return `${(people / 1e6).toFixed(1)} million`;
+        return people.toLocaleString();
+    }
+
+    const formatArea = (area) => (area < 10 ? area.toFixed(2) : Math.round(area).toLocaleString());
+
+    // "About 1.5× the size of Texas", using whichever familiar place is closest in size
+    function compareArea(name, areaKm2) {
+        const others = AREA_REFERENCES.filter(([place]) => place.replace(/^the /, '') !== name);
+        const [place, referenceKm2] = others.reduce((best, ref) =>
+            Math.abs(Math.log(areaKm2 / ref[1])) < Math.abs(Math.log(areaKm2 / best[1])) ? ref : best);
+        const ratio = areaKm2 / referenceKm2;
+        if (ratio >= 0.9 && ratio <= 1.1) return `About the same size as ${place}.`;
+        if (ratio > 1) return `About ${ratio < 10 ? ratio.toFixed(1) : Math.round(ratio)}× the size of ${place}.`;
+        return `About ${Math.round(ratio * 100)}% of the size of ${place}.`;
     }
 
     function renderLegend() {
@@ -244,8 +294,7 @@
 
     // ---------- How many fit ----------
 
-    async function setUpFitPicker() {
-        countries = await (await fetch('/countries')).json();
+    function setUpFitPicker() {
         const select = $('fitCountry');
         select.innerHTML = [...countries]
             .sort((a, b) => a.name.localeCompare(b.name))

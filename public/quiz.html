@@ -23,16 +23,38 @@
         <div id="map"></div>
 
         <aside class="panel info-card" id="quizCard" hidden>
-            <p class="muted" id="progress"></p>
-            <h1>Which country is this?</h1>
-            <p id="prompt"></p>
-            <div class="quiz-choices" id="choices"></div>
-            <div id="reveal" hidden>
-                <div class="country-heading">
-                    <img id="revealFlag" alt="">
-                    <p id="revealText"></p>
+            <nav class="segmented" aria-label="Quiz mode">
+                <a href="/quiz.html?mode=daily" id="modeDaily">Daily</a>
+                <a href="/quiz.html?mode=practice" id="modePractice">Practice</a>
+            </nav>
+
+            <div class="segmented" id="difficulty" role="group" aria-label="Difficulty" hidden>
+                <button type="button" data-difficulty="easy">Easy</button>
+                <button type="button" data-difficulty="medium">Medium</button>
+                <button type="button" data-difficulty="hard">Hard</button>
+            </div>
+
+            <div id="question">
+                <p class="muted" id="progress"></p>
+                <h1>Which country is this?</h1>
+                <p id="prompt"></p>
+                <div class="quiz-choices" id="choices"></div>
+                <div id="reveal" hidden>
+                    <div class="country-heading">
+                        <img id="revealFlag" alt="">
+                        <p id="revealText"></p>
+                    </div>
+                    <button type="button" class="button" id="nextRound">Next</button>
                 </div>
-                <button type="button" class="button" id="nextRound">Next</button>
+            </div>
+
+            <div id="dailySummary" hidden>
+                <h1 id="summaryTitle"></h1>
+                <p id="summaryScore"></p>
+                <p class="daily-squares" id="summarySquares" aria-hidden="true"></p>
+                <button type="button" class="button" id="shareResult">Share result</button>
+                <p class="muted" id="nextChallenge"></p>
+                <p><a class="text-link" href="/quiz.html?mode=practice">Practice while you wait</a></p>
             </div>
         </aside>
 
