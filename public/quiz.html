@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz · ClosestGeo</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/">ClosestGeo</a>
+        <nav class="topbar-actions">
+            <div class="unit-toggle" role="group" aria-label="Distance units">
+                <button type="button" data-unit="mi">mi</button>
+                <button type="button" data-unit="km">km</button>
+            </div>
+            <a class="button" href="/">Search</a>
+        </nav>
+    </header>
+
+    <main class="results">
+        <div id="map"></div>
+
+        <aside class="panel info-card" id="quizCard" hidden>
+            <p class="muted" id="progress"></p>
+            <h1>Which country is this?</h1>
+            <p id="prompt"></p>
+            <div class="quiz-choices" id="choices"></div>
+            <div id="reveal" hidden>
+                <div class="country-heading">
+                    <img id="revealFlag" alt="">
+                    <p id="revealText"></p>
+                </div>
+                <button type="button" class="button" id="nextRound">Next</button>
+            </div>
+        </aside>
+
+        <div class="overlay" id="loading">
+            <p class="loading">Loading…</p>
+        </div>
+
+        <div class="overlay" id="error" hidden>
+            <div class="panel error-card">
+                <h2>Quiz unavailable</h2>
+                <p id="errorMessage"></p>
+                <button type="button" class="button" id="retry">Try again</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/shape.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClosestGeo</title>
+    <meta name="description" content="Enter two places and find the country whose length matches the distance between them.">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <main class="home">
+        <h1>ClosestGeo</h1>
+        <p class="intro">Enter two places to find the country whose length is closest to the distance between them.</p>
+
+        <form class="panel search-form" id="addressForm" autocomplete="off">
+            <div class="field">
+                <div class="field-header">
+                    <label class="field-label" for="address1">From</label>
+                    <button type="button" class="text-button" id="useLocation">Use my location</button>
+                </div>
+                <div class="autocomplete">
+                    <input type="text" id="address1" placeholder="Chicago, IL" required
+                        role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggestions1">
+                    <ul class="suggestions" id="suggestions1" role="listbox" hidden></ul>
+                </div>
+            </div>
+            <div class="field">
+                <div class="field-header">
+                    <label class="field-label" for="address2">To</label>
+                </div>
+                <div class="autocomplete">
+                    <input type="text" id="address2" placeholder="Houston, TX" required
+                        role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggestions2">
+                    <ul class="suggestions" id="suggestions2" role="listbox" hidden></ul>
+                </div>
+            </div>
+            <p class="field-message" id="formMessage" hidden></p>
+
+            <button type="button" class="text-button" id="pickOnMap" aria-expanded="false" aria-controls="picker">Pick places on a map</button>
+            <div class="picker" id="picker" hidden>
+                <div id="pickerMap"></div>
+                <p class="muted">Click the map to set A, then B.</p>
+            </div>
+
+            <fieldset class="choices">
+                <legend>Compare with</legend>
+                <div class="choice-row">
+                    <label class="choice">
+                        <input type="radio" name="distanceOption" value="both" checked>
+                        <span>Either</span>
+                    </label>
+                    <label class="choice">
+                        <input type="radio" name="distanceOption" value="westEast">
+                        <span>West–East</span>
+                    </label>
+                    <label class="choice">
+                        <input type="radio" name="distanceOption" value="northSouth">
+                        <span>North–South</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <button class="button" type="submit">Search</button>
+        </form>
+
+        <section class="history" id="history" hidden>
+            <div class="history-header">
+                <h2>Recent searches</h2>
+                <button type="button" class="text-button" id="clearHistory">Clear</button>
+            </div>
+            <ul id="historyList"></ul>
+        </section>
+
+        <p class="home-links"><a href="/quiz.html">Play the quiz</a></p>
+    </main>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClosestGeo</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <!-- link-preview-tags -->
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/">ClosestGeo</a>
+        <nav class="topbar-actions">
+            <div class="unit-toggle" role="group" aria-label="Distance units">
+                <button type="button" data-unit="mi">mi</button>
+                <button type="button" data-unit="km">km</button>
+            </div>
+            <a class="text-link" href="/quiz.html">Quiz</a>
+            <a class="button" href="/">New search</a>
+        </nav>
+    </header>
+
+    <main class="results">
+        <div id="map"></div>
+
+        <aside class="panel info-card" id="info" hidden>
+            <div class="country-heading">
+                <img id="flag" alt="">
+                <div>
+                    <h1 id="countryName"></h1>
+                    <p class="muted" id="matchLabel"></p>
+                </div>
+            </div>
+
+            <dl class="stats">
+                <div><dt>Your distance</dt><dd id="yourDistance"></dd></div>
+                <div><dt id="spanLabel"></dt><dd id="spanValue"></dd></div>
+            </dl>
+            <p class="difference" id="difference"></p>
+
+            <div class="adjust" id="adjust">
+                <div class="adjust-row">
+                    <label for="rotate">Rotate</label>
+                    <input type="range" id="rotate" min="-180" max="180" step="1" value="0">
+                    <button type="button" class="text-button" id="resetShape">Reset</button>
+                </div>
+                <p class="muted">Drag the outline to move it.</p>
+            </div>
+
+            <details class="section" open>
+                <summary>Close matches</summary>
+                <ol class="matches" id="matches"></ol>
+            </details>
+
+            <details class="section" id="fitSection">
+                <summary>How many fit?</summary>
+                <label class="field-label" for="fitCountry">Country</label>
+                <select id="fitCountry"></select>
+                <p id="fitText"></p>
+                <button type="button" class="button button-secondary" id="fitToggle">Show on map</button>
+            </details>
+
+            <ul class="route" id="route"></ul>
+            <ul class="legend" id="legend"></ul>
+
+            <button type="button" class="button button-secondary" id="copyLink">Copy link</button>
+        </aside>
+
+        <div class="overlay" id="loading">
+            <p class="loading">Loading…</p>
+        </div>
+
+        <div class="overlay" id="error" hidden>
+            <div class="panel error-card">
+                <h2 id="errorTitle">Search failed</h2>
+                <p id="errorMessage"></p>
+                <a class="button" href="/">Back to search</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/shape.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/results.js"></script>
+</body>
+</html>
